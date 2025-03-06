@@ -5,7 +5,7 @@
                 <text class="text-xl text-primary font-medium">{{ title }}</text>
                 <image class="storyimg w-full rounded-xl my-3" src="@/static/icons/storyimg.png" mode="aspectFill"></image>
                 <view>
-                    <rich-text :nodes="storyContent" class="text">
+                    <rich-text :nodes="schoolContent" class="text">
                     </rich-text>
                 </view>
             </view>
@@ -15,17 +15,17 @@
 
 <script lang="ts" setup>
 import Home from '../index/components/Home.vue';
-import { getStory } from '@/api/story';
+import { getSchool } from '@/api/school';
 
 const title = ref('');
-const storyContent = ref('');
+const schoolContent = ref('');
 
 onMounted(() => {
     getData()
 })
 function getData(){
-    getStory().then(res => {
-        storyContent.value= res.data.content
+    getSchool().then(res => {
+        schoolContent.value= res.data.content
         title.value= res.data.title
         console.log(res)
     })

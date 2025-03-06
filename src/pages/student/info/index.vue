@@ -1,4 +1,5 @@
 <template>
+  <Home>
   <view>
     <view  class="p-6 pt-[116rpx]">
       <view class="pt-8">
@@ -12,8 +13,8 @@
       </view>
 
       <view class="flex flex-col gap-4 mt-7">
-        <view class="text-center text-xl text-primary">张小丽</view>
-        <view class="text-center text-gray-400">女@二年级(3)班</view>
+        <view class="text-center text-xl text-primary">{{ info?.name}}</view>
+        <view class="text-center text-gray-400">{{ StudentGenderVars[info?.gender as StudentGenderType]}}@{{ info?.grade }}</view>
       </view>
 
       <view class="mt-20 flex flex-col gap-20">
@@ -33,21 +34,25 @@
       </view>
     </view>
   </view>
-<view>
-  <!-- <Home /> -->
-</view>
+</Home>
 </template>
 
 <script lang="ts" setup>
 import { getStudentInfo } from '@/api/student'
+import { StudentInfoModel } from '@/api/student/types'
 import AButton from '@/components/AButton/index.vue'
+import { StudentGenderType } from '@/enums/student'
 import { getPageParams } from '@/utils'
+import { StudentGenderVars } from '@/variants/student'
+import Home from '@/pages/index/components/Home.vue'
 
+const info = ref<StudentInfoModel>()
 
 function handleEmergencyCall() {
   uni.makePhoneCall({
-    phoneNumber: '13800138000'
+    phoneNumber: `${info.value?.phone_number}`
   })
+  console.log(info.value?.phone_number)
 }
 
 onLoad(() => {
@@ -56,8 +61,8 @@ onLoad(() => {
 
 function getData() {
   const { code } = getPageParams()
-
   getStudentInfo(code).then(res => {
+    info.value = res.data
     console.log(res)
   })
 }

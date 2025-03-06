@@ -1,8 +1,8 @@
 import { http } from '@/utils/request';
 
-export function getStory() {
+export function getSchool() {
   return http.get<any,{data:{
-      title: string;
+      title: string,
       content:string
-}}>(`/story`);
+}}>(`/school`);
 }

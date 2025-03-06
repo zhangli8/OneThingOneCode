@@ -4,8 +4,8 @@
       <ProductResult :info="info" />
       <ProductInfo :info="info" />
       <ProductNav :code="code" />
-      <ProductStudent />
-      <ProductOther />
+      <ProductStudent :info="info" />
+      <ProductOther :code="code" />
     </view>
     <view>
       <Home :code="code" />

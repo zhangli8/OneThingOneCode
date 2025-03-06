@@ -69,11 +69,22 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.3",
     "sass": "^1.85.1",
-    "tailwindcss": "3",
+    "tailwindcss": "^3.4.17",
     "typescript": "^4.9.4",
     "unplugin-auto-import": "^19.1.1",
     "vite": "5.2.8",
     "vue-tsc": "^1.0.24",
-    "weapp-tailwindcss": "^4.0.8"
+    "weapp-tailwindcss": "^3.7.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ],
+    "ignoredBuiltDependencies": [
+      "@parcel/watcher",
+      "core-js",
+      "vue-demi",
+      "weapp-tailwindcss"
+    ]
   }
 }

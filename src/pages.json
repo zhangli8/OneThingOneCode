@@ -29,6 +29,20 @@
 	  }
 	},
   {
+	  "path": "pages/school/index",
+	  "style": {
+      "navigationBarTitleText": "",
+      "navigationStyle": "custom"
+	  }
+	},
+  {
+	  "path": "pages/designer/index",
+	  "style": {
+      "navigationBarTitleText": "",
+      "navigationStyle": "custom"
+	  }
+	},
+  {
     "path": "pages/student/link/index",
     "style": {
       "navigationBarTitleText": "",

@@ -1,7 +1,7 @@
 <template>
   <view>
     <view v-if="isMounted" class="radio-group">
-      <view v-for="o in options" :key="o.value" class="flex-1 h-full">
+      <view v-for="o in options" :key="o.value" class="flex-1 h-full z-10">
         <view :class="[o.value === modelValue ? 'text-white' : 'text-primary']"
           class="w-full h-full flex items-center justify-center rounded-full text-sm transition-[color] ease-in-out delay-200"
           @click="onChange(o.value)">
@@ -45,7 +45,6 @@ function onChange(v: string | number) {
     transform: v-bind('checkedIndex === -1 ? "translateX(0%)" : `translateX(${checkedIndex * 100}%)`');
     opacity: v-bind('checkedIndex === -1 ? 0 : 1');
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
-    z-index: -1;
     @apply absolute h-full top-0 left-0 rounded-full bg-primary;
   }
 }

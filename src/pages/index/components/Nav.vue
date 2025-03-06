@@ -2,7 +2,7 @@
   <view>
     <view class="flex justify-between px-2">
     
-      <navigator :url="`/pages/story/index?code=${props.code}`">
+      <navigator :url="`/pages/school/index?code=${props.code}`">
       <view class="flex flex-col items-center gap-1">
         <view class="w-16 h-16 rounded-full flex items-center justify-center">
           <image
@@ -28,8 +28,8 @@
       </view>
     </navigator>
 
-    <navigator url="/pages/buy/index">
-      <view class="flex flex-col items-center gap-1">
+
+      <view @click="toMiniProgram" class="flex flex-col items-center gap-1">
         <view class="w-16 h-16 rounded-full flex items-center justify-center">
           <image
             class="w-full h-full"
@@ -39,7 +39,7 @@
         </view>
         <view class="text-primary-strong-1 text-base">购买链接</view>
       </view>
-    </navigator>
+
     </view>
   </view>
 </template>
@@ -55,6 +55,20 @@ const props = defineProps({
     required: true // 指定该 prop 是必需的
   }
 });
+
+function toMiniProgram() {
+  uni.navigateToMiniProgram({
+    appId: 'wxf890539f221d6a6f',
+    path: 'pages/home/index',
+    extraData: {
+      'mydata': '2dCode'
+    },
+    success(res) {
+      // 打开成功
+    }
+  })
+}
+
 </script>
 
 <style lang="scss" scoped>
