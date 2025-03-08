@@ -1,6 +1,6 @@
 <template>
   <Home>
-    <view>
+    <view :style="{ paddingTop:`${customBarHeight}px`}">
       <view class="px-6">
         <view class="pt-8">
           <view class="text-center text-xl text-primary">学生信息绑定</view>
@@ -26,7 +26,7 @@
           <ARadio v-model="formData.gender" :options="[{ label: '男', value: 'male' }, { label: '女', value: 'female' }]" />
         </view>
 
-        <view class="mt-20">
+        <view class="mt-14">
           <AButton text="提交" @click="submitForm" />
         </view>
       </view>
@@ -44,15 +44,9 @@ import { createStudentInfo } from '@/api/student'
 import { getPageParams } from '@/utils'
 import { CreateStudentInfoQuery } from '@/api/student/types'
 import { StudentGenderType } from '@/enums/student'
+import { useWindowInfo } from '@/hooks/useWindowInfo';
 
-// 定义 props 来接收父组件传递的值
-const props = defineProps({
-  code: {
-    type: String, // 指定 prop 的类型为字符串
-    required: true // 指定该 prop 是必需的
-  }
-});
-
+const { customBarHeight } = useWindowInfo()
 
 const formData = reactive<CreateStudentInfoQuery>({
     name: '',
@@ -118,7 +112,7 @@ function submitForm() {
     // 提交成功后跳转到其他页面
     setTimeout(() => {
       uni.navigateTo({
-        url: '/pages/student/info/index'+ '?code=' + props.code
+        url: '/pages/student/info/index'+ '?code=' + code
       })
     },1500)
   })

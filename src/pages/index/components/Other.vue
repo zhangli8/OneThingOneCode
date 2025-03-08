@@ -10,7 +10,7 @@
               src="/static/icons/balloon.png"
             />
           </view>
-          <view class="text-primary-strong-1 text-ms">校服故事</view>
+          <view class="text-primary-strong-1 text-sm">校服故事</view>
       </view>
       </navigator>
 
@@ -23,7 +23,7 @@
               src="/static/icons/skirt.png"
             />
           </view>
-        <view class="text-primary-strong-1 text-ms">设计师寄语</view>
+        <view class="text-primary-strong-1 text-sm">设计师寄语</view>
       </view>
       </navigator>
     </view>

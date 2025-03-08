@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view v-if="isMounted" class="radio-group">
+    <view v-if="isMounted" class="radio-group bg-white">
       <view v-for="o in options" :key="o.value" class="flex-1 h-full z-10">
         <view :class="[o.value === modelValue ? 'text-white' : 'text-primary']"
           class="w-full h-full flex items-center justify-center rounded-full text-sm transition-[color] ease-in-out delay-200"

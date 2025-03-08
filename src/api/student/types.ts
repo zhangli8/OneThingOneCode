@@ -19,3 +19,7 @@ export interface CreateStudentInfoQuery {
     phone_number: string;
     gender:StudentGenderType;
 }
+
+export interface UpdateBoundStatusQuery {
+    bound_userinfo: boolean;
+}

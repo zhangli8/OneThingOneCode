@@ -11,7 +11,7 @@
             src="/static/icons/school.png"
           />
         </view>
-        <view class="text-primary-strong-1 text-base">学校风采</view>
+        <view class="text-primary-strong-1 text-sm">学校风采</view>
       </view>
     </navigator>
 
@@ -24,7 +24,7 @@
             src="/static/icons/report.png"
           />
         </view>
-        <view class="text-primary-strong-1 text-base">质检报告</view>
+        <view class="text-primary-strong-1 text-sm">质检报告</view>
       </view>
     </navigator>
 
@@ -37,7 +37,7 @@
             src="/static/icons/cart.png"
           />
         </view>
-        <view class="text-primary-strong-1 text-base">购买链接</view>
+        <view class="text-primary-strong-1 text-sm">购买链接</view>
       </view>
 
     </view>
@@ -45,7 +45,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue';
 import wx from 'weixin-js-sdk'
 
 // 定义 props 来接收父组件传递的值

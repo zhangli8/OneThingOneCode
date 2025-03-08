@@ -21,7 +21,7 @@ import { getPageParams } from '@/utils';
 
 function goHome() {
     const params = getPageParams()
-    uni.navigateTo({
+    uni.redirectTo({
         url: '/pages/index/index?code=' + params.code   
     })
 }

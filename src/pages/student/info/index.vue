@@ -1,14 +1,14 @@
 <template>
   <Home>
-  <view>
-    <view  class="p-6 pt-[116rpx]">
+  <view :style="{ paddingTop:`${customBarHeight}px`}">
+    <view  class="px-6">
       <view class="pt-8">
         <view class="text-center text-xl text-primary">学生信息</view>
       </view>
 
       <view class="relative border-4 border-solid border-primary w-32 h-32 rounded-full mx-auto mt-4 p-1.5">
         <view class="w-full h-full rounded-full overflow-hidden">
-          <image class="w-full h-full" mode="scaleToFill" src="/static/icons/school.png" />
+          <image class="w-full h-full" mode="scaleToFill" src="/static/icons/default-avatar.png" />
         </view>
       </view>
 
@@ -30,7 +30,7 @@
             <text class="text-white text-base">紧急呼叫</text>
           </view>
         </AButton>
-        <AButton text="解除绑定" />
+        <button class="bg-blue-500 text-white w-full h-14 leading-[3.5rem] rounded-full text-base" @click="unBoundUserInfo">解除绑定</button>
       </view>
     </view>
   </view>
@@ -38,30 +38,60 @@
 </template>
 
 <script lang="ts" setup>
-import { getStudentInfo } from '@/api/student'
+import { getStudentInfo, updateBoundStatus } from '@/api/student'
 import { StudentInfoModel } from '@/api/student/types'
 import AButton from '@/components/AButton/index.vue'
 import { StudentGenderType } from '@/enums/student'
 import { getPageParams } from '@/utils'
 import { StudentGenderVars } from '@/variants/student'
 import Home from '@/pages/index/components/Home.vue'
+import { useWindowInfo } from '@/hooks/useWindowInfo';
 
+const code = ref('')
+const { customBarHeight } = useWindowInfo()
 const info = ref<StudentInfoModel>()
 
 function handleEmergencyCall() {
   uni.makePhoneCall({
-    phoneNumber: `${info.value?.phone_number}`
+    phoneNumber: `${info.value?.phone_number}`,
+    fail:(err) => {
+      console.log(err)
+    }
   })
   console.log(info.value?.phone_number)
 }
 
-onLoad(() => {
+function unBoundUserInfo(){
+  uni.showModal({
+    title: '解除绑定',
+    content: '确定要解除绑定吗？',
+    success: (res) => {
+      if (res.confirm) {
+        updateBoundStatus(code.value,{ "bound_userinfo": false }).then(res => {
+        uni.redirectTo({
+          url: '/pages/index/index?code=' + getPageParams().code
+        })
+      }).catch(() => {
+        uni.redirectTo({
+          url: '/pages/err/index'
+        })
+      })
+        
+      } else if (res.cancel) {
+        console.log('用户点击取消');
+      }
+    }
+  })
+}
+
+onMounted(() => {
   getData()
 })
 
 function getData() {
-  const { code } = getPageParams()
-  getStudentInfo(code).then(res => {
+  const params = getPageParams()
+  code.value = params.code || ''
+  getStudentInfo(code.value).then(res => {
     info.value = res.data
     console.log(res)
   })

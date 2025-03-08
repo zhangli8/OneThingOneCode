@@ -18,14 +18,6 @@
             mode="aspectFit"
             src="/static/icons/badge.png"
           />
-
-          <view class="w-10 h-10 rounded-full bg-white absolute top-4 left-1/2 -translate-x-1/2">
-            <image
-              class="w-full h-full p-2"
-              mode="aspectFit"
-              src="/static/icons/correct.png"
-            />
-          </view>
         </view>
       </view>
     </view>
@@ -35,7 +27,7 @@
 <script lang="ts" setup>
 import { StudentInfoModel } from '@/api/student/types';
 
-const props = defineProps<{
+defineProps<{
   info: StudentInfoModel | undefined
 }>()
 </script>

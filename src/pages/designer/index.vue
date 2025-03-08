@@ -1,22 +1,26 @@
 <template>  
+<view :style="{ paddingTop:`${customBarHeight}px`}">
     <Home>
-        <view class="p-6 pt-[50rpx]">
+        <view class="px-6">
             <view>
                 <text class="text-xl text-primary font-medium">{{ title }}</text>
-                <image class="storyimg w-full rounded-xl my-3" src="@/static/icons/storyimg.png" mode="aspectFill"></image>
-                <view>
-                    <rich-text :nodes="designerContent" class="text">
+                <image class="storyimg w-full rounded-xl my-3" src="@/static/icons/designer-img.png" mode="aspectFill"></image>
+                <view class="pb-20">
+                    <rich-text :nodes="designerContent" class="text-sm leading-6 text">
                     </rich-text>
                 </view>
             </view>
         </view>
     </Home>
+</view>
 </template>
 
 <script lang="ts" setup>
 import Home from '../index/components/Home.vue';
 import { getDesigner } from '@/api/designer';
+import { useWindowInfo } from '@/hooks/useWindowInfo';
 
+const { customBarHeight } = useWindowInfo()
 const title = ref('');
 const designerContent = ref('');
 

@@ -1,22 +1,26 @@
-<template>  
+<template>
+<view :style="{ paddingTop:`${customBarHeight}px`}">
     <Home>
-        <view class="p-6 pt-[50rpx]">
+        <view class="px-6">
             <view>
                 <text class="text-xl text-primary font-medium">{{ title }}</text>
-                <image class="storyimg w-full rounded-xl my-3" src="@/static/icons/storyimg.png" mode="aspectFill"></image>
-                <view>
-                    <rich-text :nodes="schoolContent" class="text">
+                <image class="storyimg w-full rounded-xl my-3" src="@/static/icons/school-img.png" mode="aspectFill"></image>
+                <view class="pb-20">
+                    <rich-text :nodes="schoolContent" class="text-sm leading-6 text">
                     </rich-text>
                 </view>
             </view>
         </view>
     </Home>
+</view>
 </template>
 
 <script lang="ts" setup>
+import { useWindowInfo } from '@/hooks/useWindowInfo';
 import Home from '../index/components/Home.vue';
 import { getSchool } from '@/api/school';
 
+const { customBarHeight } = useWindowInfo()
 const title = ref('');
 const schoolContent = ref('');
 
@@ -44,7 +48,5 @@ function getData(){
 }
 .text{
     color:#3f4262;
-    line-height: 46rpx;
-    font-size:26repx;
 }
 </style>

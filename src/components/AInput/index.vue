@@ -1,6 +1,6 @@
 <template>
   <view>
-    <view class="border-2 border-solid border-primary rounded-lg h-14 overflow-hidden relative">
+    <view class="border-2 border-solid bg-white border-primary rounded-xl h-14 overflow-hidden relative">
       <view class="w-10 h-10 rounded-full absolute left-2 top-1/2 -translate-y-1/2 flex items-center justify-center">
         <image
           class="w-full h-full"

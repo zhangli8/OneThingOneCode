@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { StudentInfoModel } from '@/api/student/types';
 
-const props = defineProps<{
+defineProps<{
   info: StudentInfoModel | undefined
 }>()
 </script>
