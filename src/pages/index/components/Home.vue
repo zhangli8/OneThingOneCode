@@ -1,9 +1,9 @@
 <template>
     <view>
-        <view>
+        <view class="pb-16">
             <slot></slot>
         </view>
-        <view 
+        <view
             @click="goHome" 
             class="fixed bottom-0 left-0 right-0 flex justify-center items-center w-full h-16 bg-white">
             <image

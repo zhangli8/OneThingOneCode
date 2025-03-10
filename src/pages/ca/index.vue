@@ -10,9 +10,9 @@
               <image class="w-full h-full" :src="item" mode="aspectFill"></image>
             </swiper-item>
         </swiper>
-        <view class="flex justify-between pt-3">
-          <view class="w-24 bg-blue-500 h-8 leading-8 rounded-lg text-center text-white" @click="handlePage(-1)">上一页</view>
-          <view class="w-24 bg-blue-500 h-8 leading-8 rounded-lg text-center text-white" @click="handlePage(1)">下一页</view>
+        <view class="flex justify-between pt-3 pb-8">
+          <view class="w-24 bg-blue-500 h-8 leading-8 rounded-full text-center text-white text-sm" @click="handlePage(-1)">上一页</view>
+          <view class="w-24 bg-blue-500 h-8 leading-8 rounded-full text-center text-white text-sm" @click="handlePage(1)">下一页</view>
         </view>
     </view>
   </Home>

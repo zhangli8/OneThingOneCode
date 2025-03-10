@@ -25,20 +25,23 @@ import Home from './components/Home.vue'
 import { ref, onMounted } from 'vue'
 import { StudentInfoModel } from '@/api/student/types'
 import { useWindowInfo } from '@/hooks/useWindowInfo'
+import { useAppStore } from '@/stores/app'
 
+
+const appStore = useAppStore()
 const code = ref<string>('')
 const info = ref<StudentInfoModel>()
 const { customBarHeight } = useWindowInfo()
+
 
 onMounted(() => {
     getData()
 })
 
 function getData() {
-  const params = getPageParams()
-  code.value = params.code || ''
-
-  console.log(code.value)
+  // const params = getPageParams()
+  code.value = appStore.verifyCode || ''
+  // console.log(code.value)
 
   if (!code.value) {
     uni.redirectTo({

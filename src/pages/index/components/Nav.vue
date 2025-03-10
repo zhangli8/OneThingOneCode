@@ -45,7 +45,6 @@
 </template>
 
 <script lang="ts" setup>
-import wx from 'weixin-js-sdk'
 
 // 定义 props 来接收父组件传递的值
 const props = defineProps({
