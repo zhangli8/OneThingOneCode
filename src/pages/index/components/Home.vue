@@ -16,13 +16,13 @@
 </template>
 
 <script lang="ts" setup>
+import { useAppStore } from '@/stores/app'
 
-import { getPageParams } from '@/utils';
+const appStore = useAppStore()
 
 function goHome() {
-    const params = getPageParams()
     uni.redirectTo({
-        url: '/pages/index/index?code=' + params.code   
+        url: '/pages/index/index?code=' + appStore.verifyCode  
     })
 }
 

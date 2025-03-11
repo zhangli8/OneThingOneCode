@@ -20,7 +20,6 @@ import ProductNav from './components/Nav.vue'
 import ProductStudent from './components/Student.vue'
 import ProductOther from './components/Other.vue'
 import { getStudentInfo } from '@/api/student'
-import { getPageParams } from '@/utils'
 import Home from './components/Home.vue'
 import { ref, onMounted } from 'vue'
 import { StudentInfoModel } from '@/api/student/types'
@@ -39,9 +38,7 @@ onMounted(() => {
 })
 
 function getData() {
-  // const params = getPageParams()
   code.value = appStore.verifyCode || ''
-  // console.log(code.value)
 
   if (!code.value) {
     uni.redirectTo({
@@ -61,7 +58,5 @@ function getData() {
 </script>
 
 <style>
-page {
-  @apply bg-primary-light-9;
-}
+
 </style>

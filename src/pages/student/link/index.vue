@@ -26,8 +26,14 @@
           <ARadio v-model="formData.gender" :options="[{ label: '男', value: 'male' }, { label: '女', value: 'female' }]" />
         </view>
 
+        <view class="flex flex-row justify-content items-center flex-nowrap text-xs py-4 text-gray-500">
+              <checkbox class="" :checked="isAgreed" @click="onAgreementChange">我已阅读并同意</checkbox>
+              <navigator open-type="navigate" class="w-auto text-primary" url="/pages/agreement/index">《用户协议》</navigator>
+              <navigator open-type="navigate" class="w-auto text-primary" url="/pages/privacy/index">《隐私政策》</navigator>
+        </view>
+
         <view class="mt-14">
-          <AButton text="提交" @click="submitForm" />
+          <AButton :disabled="!isAgreed" text="提交" @click="submitForm" />
         </view>
       </view>
     </view>
@@ -40,20 +46,27 @@ import AInput from '@/components/AInput/index.vue'
 import ARadio from '@/components/ARadio/index.vue'
 import AButton from '@/components/AButton/index.vue'
 import Home from '@/pages/index/components/Home.vue'
-import { createStudentInfo } from '@/api/student'
-import { getPageParams } from '@/utils'
+import { createStudentInfo, updateBoundStatus } from '@/api/student'
+import { useAppStore } from '@/stores/app'
 import { CreateStudentInfoQuery } from '@/api/student/types'
 import { StudentGenderType } from '@/enums/student'
 import { useWindowInfo } from '@/hooks/useWindowInfo';
 
-const { customBarHeight } = useWindowInfo()
 
+// 定义响应式变量并指定类型
+const isAgreed = ref<boolean>(false);
+const { customBarHeight } = useWindowInfo()
+const code = useAppStore().verifyCode
 const formData = reactive<CreateStudentInfoQuery>({
     name: '',
     grade: '',
     phone_number: '',
     gender: StudentGenderType.MALE,
 })
+// 处理协议勾选状态变化
+function onAgreementChange(e: any){
+  isAgreed.value = !isAgreed.value
+};
 
 function chooseImage() {
   uni.chooseImage({
@@ -68,8 +81,6 @@ function chooseImage() {
 }
 
 function submitForm() {
-  console.log(formData)
-
   // 表单验证
   if (!formData.name) {
     uni.showToast({
@@ -99,18 +110,20 @@ function submitForm() {
   uni.showLoading({
     title: '提交中...'
   })
-  
-  const {code} = getPageParams()
+
   // 这里可以替换为实际的API调用
   createStudentInfo(code,formData).then(res => {
     uni.hideLoading()
     uni.showToast({
       title: '提交成功',
       icon: 'success'
-    })
-    
-    // 提交成功后跳转到其他页面
-    setTimeout(() => {
+  })
+
+  //更新用户关联状态
+  updateBoundStatus(code,{bound_userinfo:true})
+
+  // 提交成功后跳转到其他页面
+  setTimeout(() => {
       uni.navigateTo({
         url: '/pages/student/info/index'+ '?code=' + code
       })

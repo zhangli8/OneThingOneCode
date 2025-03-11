@@ -29,6 +29,20 @@
 	  }
 	},
   {
+	  "path": "pages/agreement/index",
+	  "style": {
+      "navigationBarTitleText": "",
+      "navigationStyle": "custom"
+	  }
+	},
+  {
+	  "path": "pages/privacy/index",
+	  "style": {
+      "navigationBarTitleText": "",
+      "navigationStyle": "custom"
+	  }
+	},
+  {
 	  "path": "pages/school/index",
 	  "style": {
       "navigationBarTitleText": "",

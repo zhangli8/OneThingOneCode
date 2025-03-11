@@ -22,28 +22,28 @@
         </view>
 
       </view>
-      <view class="text-sm">{{ info?.bound_userinfo ?'查看学生信息':'关联学生信息' }}</view>
+      <view class="text-sm mt-2">{{ info?.bound_userinfo ? info.name+'@'+info.grade :'关联学生信息' }}</view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
 import { StudentInfoModel } from '@/api/student/types';
-import { getPageParams } from '@/utils';
+import { useAppStore } from '@/stores/app'
 
+const code = useAppStore().verifyCode
 const props = defineProps<{
   info: StudentInfoModel | undefined
 }>()
 
 function handleStudentClick() {
-  const params = getPageParams()
   if (props.info?.bound_userinfo) {
     uni.navigateTo({
-      url: '/pages/student/info/index'+ '?code=' + params.code
+      url: '/pages/student/info/index'+ '?code=' + code
     })
   } else {
     uni.navigateTo({
-      url: '/pages/student/link/index'+ '?code=' + params.code
+      url: '/pages/student/link/index'+ '?code=' + code
     })
   }
 }
