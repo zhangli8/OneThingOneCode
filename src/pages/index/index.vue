@@ -26,7 +26,6 @@ import { StudentInfoModel } from '@/api/student/types'
 import { useWindowInfo } from '@/hooks/useWindowInfo'
 import { useAppStore } from '@/stores/app'
 
-
 const appStore = useAppStore()
 const code = ref<string>('')
 const info = ref<StudentInfoModel>()
@@ -34,8 +33,35 @@ const { customBarHeight } = useWindowInfo()
 
 
 onMounted(() => {
-    getData()
+    getData();
+    loginAndFetchData();
 })
+
+const loginAndFetchData = async () => {
+  try {
+    // 获取登录凭证
+    const { code } = await uni.login({
+      provider: 'weixin'
+    });
+
+    console.log("微信code:",code);
+
+    // 发送凭证到后端获取用户数据
+    const res = await uni.request({
+      url: 'http://localhost:5000/getOpenid',
+      method: 'POST',
+      data: {
+        code
+      },
+      success: (res) => {
+        console.log('获取用户数据成功:', res.data);
+      }
+    });
+  } catch (error) {
+    console.error('登录失败:', error);
+  }
+
+};
 
 function getData() {
   code.value = appStore.verifyCode || ''

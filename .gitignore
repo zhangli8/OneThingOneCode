@@ -25,6 +25,7 @@ dist
 # 环境配置文件
 .env.*
 !*.env.production
+.pnpm-store
 
 temp
 tmp
