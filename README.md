@@ -11,7 +11,6 @@ typescript version: 4.9.5
 postcss version: 8.5.3
 tailwindcss
 
-微信小程序APPID：wx67f4893ff782e7cd
 
 开发环境搭建：
 1. docker pull node:22.14.0
