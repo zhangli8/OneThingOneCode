@@ -17,7 +17,7 @@ tailwindcss
 2. docker run -it node:22.14.0 bash
 3. npm install -g pnpm 
 4. pnpm --version
-5. docker run -it --network=host -p 3000:3000 -v ./:/app my-node:22.14.0 bash
+5. docker run -it --network=host -p 3000:3000 -v $(pwd)/:/app my-node:22.14.0 bash
 
 框架：uni-app
 包管理器：pnpm
