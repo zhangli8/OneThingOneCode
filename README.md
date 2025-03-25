@@ -16,8 +16,10 @@ tailwindcss
 1. docker pull node:22.14.0
 2. docker run -it node:22.14.0 bash
 3. npm install -g pnpm 
-4. pnpm --version
-5. docker run -it --network=host -p 3000:3000 -v ./:/app my-node:22.14.0 bash
+4. pnpm --version 
+5. docker ps -a
+6. docker commit xxxxxxx mynode:22.14
+7. docker run -it --network=host -p 3000:3000 -v ${PWD}:/app mynode:22.14 bash
 
 框架：uni-app
 包管理器：pnpm

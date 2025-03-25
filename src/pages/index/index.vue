@@ -48,7 +48,7 @@ const loginAndFetchData = async () => {
 
     // 发送凭证到后端获取用户数据
     const res = await uni.request({
-      url: 'http://localhost:5000/getOpenid',
+      url: 'http://192.168.1.5:8080/getopenid',
       method: 'POST',
       data: {
         code
