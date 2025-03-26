@@ -62,6 +62,7 @@ const loginAndFetchData = async () => {
     if (res.statusCode === 200) {
       const token = res.data as string; 
       appStore.setToken(token); 
+      console.log("token:", token);
     } else {
       console.error('请求失败:', res);
     }

@@ -1,3 +1,4 @@
+import { useAppStore } from '@/stores/app';
 import Request, {type HttpError} from 'luch-request';
 
 
@@ -8,6 +9,14 @@ export const http = new Request({
 
 http.interceptors.request.use(
   (config) => {
+    const s = useAppStore()
+    if (s.token) {
+      config.header = {
+        ...config.header,
+        Authorization: `Bearer ${s.token}`,
+      };
+    }
+    
     return config;
   },
   (error) => {

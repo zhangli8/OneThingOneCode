@@ -20,6 +20,7 @@ onLaunch((options: any) => {
     appStore.verifyCode = params.code
     console.log(url,appStore.verifyCode)
 });
+
 </script>
 <style lang="scss">
 @use 'tailwindcss/base';
